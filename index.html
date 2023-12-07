@@ -8,9 +8,24 @@
 </head>
 <body>
 
+  <input type="button" value="Reload page" onclick="window.location.reload();">
+<hr>
+<canvas id='canvas4' width="700" height="450" style='border:2px dashed#f1a335;'></canvas>ctx4<br>
+<input id="sin" type="button" value="Circular to1 linear motion" onclick="toggleshow();"/>
+<input id="bgmotion" type="color" value=#D2B48C name="bgmotion"/>
 
+<div>Radians and degrees. Starting at the top. Restarts every cycle.</div>
+ <div id="top">Radians</div><br>
+<div id="bottom">Degrees</div>
 
     <script>
+
+
+//const canvas = document.getElementById("canvas4");
+//const ctx4 = canvas.getContext("2d");
+
+const canvas4 = document.getElementById("canvas4");
+const ctx4 = canvas4.getContext("2d"); 
 
 
 //Generate random numbers
@@ -42,10 +57,10 @@ let arrA = [];
 //let rev = 0.04;//Speed of revolution
 let nn = 0.5;//How spread out wave is
 let amp = 40;//Amplitude of wave
-var nudgeHorizontally = 40;
-var nudgeVertically = 40;
-kk = 0;
-countFrames = 0;
+let nudgeHorizontally = 40;
+let nudgeVertically = 40;
+let kk = 0;
+let countFrames = 0;
 let pauseShow = true;
 //circular to linear motion---------------------
 function show(){
@@ -162,14 +177,6 @@ document.getElementById("top").innerHTML = theta.toFixed(1)+ 'rads';//starting a
 document.getElementById("bottom").innerHTML = (theta * (180/Math.PI)).toFixed(1)+'&deg';
 //Centre of revolving circle--------------
 ctx4.beginPath();
-  requestAnimationFrame(show);
-	   document.getElementById("sin").value = "Pause";
-    }
-  else
-    {  pauseShow = true;
-	   document.getElementById("sin").value = "Circular to linear motion";
-    }
-ctx4.beginPath();
 ctx4.fillStyle = "red";
 ctx4.arc(x2 + nudgeHorizontally, y2 + nudgeVertically, 5, 0, 2 * Math.PI);
 ctx4.fill();
@@ -184,13 +191,24 @@ countFrames++;
 }//closes the function show()
 
 
+function toggleshow() {//4th canvas ctx4 Circular to linear motion
+  if (pauseShow)
+    {  pauseShow = false;
+	   requestAnimationFrame(show);
+	   document.getElementById("sin").value = "Pause";
+    }
+  else
+    {  pauseShow = true;
+	   document.getElementById("sin").value = "Circular to3 linear motion";
+    }
+}
 
-
+/*
 function toggleshow() {//4th canvas ctx4 Circular to linear motion
   if (pauseShow)
     {  pauseShow = false;
     }
-}
+}*/
     </script>
 </body>
 </html>
